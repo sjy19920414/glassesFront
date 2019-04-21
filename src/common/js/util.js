@@ -82,6 +82,17 @@ export default {
             }
         }
         return '';
-    }
+    },
+    formatPrice: function(value) {
+        return parseFloat(value/100).toFixed(2)
+    },
+    formatUsePoints: function (context,val) {
 
+        for (let i = 0; i <commConst.usePointsOrNot.length ; i++) {
+            if(commConst.usePointsOrNot[i].value==val){
+                return context.$t(commConst.usePointsOrNot[i].name);
+            }
+        }
+        return '';
+    }
 };

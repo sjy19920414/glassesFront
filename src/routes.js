@@ -1,8 +1,7 @@
 import Login from './views/Login.vue'
 import NotFound from './views/404.vue'
 import Home from './views/Home.vue'
-import User from './views/users/User.vue'
-import UserGroup from './views/usergroups/UserGroup.vue'
+import StockIn from './views/stockIn/StockIn.vue'
 
 let routes = [{
         path: '/login',
@@ -19,23 +18,12 @@ let routes = [{
     {
         path: '/',
         component: Home,
-        iconCls: 'fa fa-user',
+        iconCls: 'fa fa-shopping-basket',
         leaf: true,
         children: [{
-            path: '/users',
-            component: User,
-            name: 'menu.userManage'
-        }]
-    },
-    {
-        path: '/',
-        component: Home,
-        iconCls: 'fa fa-users',
-        leaf: true,
-        children: [{
-            path: '/usergroups',
-            component: UserGroup,
-            name: 'menu.userGroupManage'
+            path: '/stockIn',
+            component: StockIn,
+            name: 'menu.goodsManagement'
         }]
     },
     {

@@ -9,6 +9,8 @@ import Vuex from 'vuex'
 import routes from './routes'
 import 'font-awesome/css/font-awesome.min.css'
 import 'babel-polyfill'
+import './styles/basic.scss'
+import './styles/vars.scss'
 
 Vue.use(ElementUI)
 Vue.use(VueRouter)

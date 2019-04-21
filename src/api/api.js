@@ -24,3 +24,8 @@ export const DELETE = (url, params) => {
 export const PATCH = (url, params) => {
   return axios.patch(`${base}${url}`, params).then(res => res.data)
 }
+
+export const POSTHEADER = (url, params, header) => {
+  return axios.post(`${base}${url}`, params, header).then(res => res.data)
+}
+
