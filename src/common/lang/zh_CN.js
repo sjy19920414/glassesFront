@@ -37,7 +37,8 @@ module.exports = {
         updateSuccess: '修改成功',
         back: '返回',
         switchlan:'中/EN',
-        preview: '预览'
+        preview: '预览',
+        delete: '删除'
     },
     date: {
         latestWeek: '最近一周',
@@ -61,7 +62,9 @@ module.exports = {
         goodsFrom: '进货渠道',
         create: '增加商品',
         usePoints: '使用积分',
-        update: '修改商品'
+        update: '修改商品',
+        delete: '删除商品',
+        deleteGoods: '即将删除该商品，是否确定？'
     },
     stockInRules: {
         goodsNameNotNull: '商品名称不能为空',

@@ -37,7 +37,8 @@ module.exports = {
         updateSuccess: 'UPDATE SUCCESS',
         back: 'BACK',
         switchlan:'EN/中',
-        preview: 'PREVIEW'
+        preview: 'PREVIEW',
+        delete: 'DELETE'
     },
     date: {
         latestWeek: 'LATEST WEEK',
@@ -61,7 +62,9 @@ module.exports = {
         goodsFrom: 'SUPPLY CHANNEL',
         create: 'ADD GOODS',
         update: 'UPDATE GOODS',
-        usePoints: 'USE POINTS'
+        usePoints: 'USE POINTS',
+        delete: 'DELETE GOODS',
+        deleteGoods: 'Are you sure that you want to delete this goods?'
     },
     stockInRules: {
         goodsNameNotNull: 'GOODS NAME CAN NOT EMPTY',
