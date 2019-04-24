@@ -1,7 +1,8 @@
 module.exports = {
     menu: {
         goodsManagement: 'GOODS MANAGEMENT',
-        glassesManagement: 'GLASSES MANAGEMENT SYSTEM'
+        glassesManagement: 'GLASSES MANAGEMENT SYSTEM',
+        vipManagement: 'VIP MANAGEMENT'
     },
     common: {
         loading: 'Loading...',
@@ -72,6 +73,18 @@ module.exports = {
         goodsPriceRegex: 'GOODS PRICE INVALID',
         goodsInPriceNotNull: 'GOODS IN PRICE CAN NOT EMPTY',
         goodsInPriceRegex: 'GOODS IN PRICE INVALID',
+    },
+    vip: {
+        vipName: 'VIP NAME',
+        vipPhone: 'VIP PHONE',
+        vipBirthDate: 'VIP BIRTHDAY',
+        vipPoints: 'POINTS',
+        vipRemark: 'REMARK'
+    },
+    vipRules: {
+        vipNameNotNull: 'VIP NAME CAN NOT EMPTY!',
+        vipPhoneNotNull: 'VIP PHONE CAN NOT EMPTY!',
+        vipPhoneNotRegex: 'VIP PHONE INVALID'
     },
     error: {
         picJPGOnly:'PICTURE CAN ONLY BE JPG!',

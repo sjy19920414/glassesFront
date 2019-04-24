@@ -1,7 +1,8 @@
 module.exports = {
     menu: {
         goodsManagement: '商品管理',
-        glassesManagement: '方明视光管理平台'
+        glassesManagement: '方明视光管理平台',
+        vipManagement: '会员管理'
     },
     common: {
         loading: '加载中。。。',
@@ -72,6 +73,19 @@ module.exports = {
         goodsPriceRegex: '销售价格式不正确',
         goodsInPriceNotNull: '进货价不能为空',
         goodsInPriceRegex: '进货价格式不正确',
+    },
+    vip: {
+        vipName: '会员名称',
+        vipPhone: '会员电话',
+        vipBirthDate: '会员生日',
+        vipPoints: '会员积分',
+        vipRemark: '备注',
+        create: '添加新会员'
+    },
+    vipRules: {
+        vipNameNotNull: '会员名称不能为空!',
+        vipPhoneNotNull: '会员电话不能为空!',
+        vipPhoneNotRegex: '会员电话格式不正确'
     },
     error: {
         picJPGOnly:'上传头像图片只能是 JPG 格式!',

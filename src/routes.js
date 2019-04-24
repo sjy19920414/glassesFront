@@ -2,6 +2,7 @@ import Login from './views/Login.vue'
 import NotFound from './views/404.vue'
 import Home from './views/Home.vue'
 import StockIn from './views/stockIn/StockIn.vue'
+import Vip from './views/vip/Vip.vue'
 
 let routes = [{
         path: '/login',
@@ -24,6 +25,17 @@ let routes = [{
             path: '/stockIn',
             component: StockIn,
             name: 'menu.goodsManagement'
+        }]
+    },
+    {
+        path: '/',
+        component: Home,
+        iconCls: 'fa fa-users',
+        leaf: true,
+        children: [{
+            path: '/vip',
+            component: Vip,
+            name: 'menu.vipManagement'
         }]
     },
     {
