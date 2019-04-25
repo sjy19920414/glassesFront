@@ -79,7 +79,9 @@ module.exports = {
         vipPhone: 'VIP PHONE',
         vipBirthDate: 'VIP BIRTHDAY',
         vipPoints: 'POINTS',
-        vipRemark: 'REMARK'
+        vipRemark: 'REMARK',
+        showRemark: 'SHOW REMARK',
+        noRemark: 'Sorry, this vip\'s remark is empty'
     },
     vipRules: {
         vipNameNotNull: 'VIP NAME CAN NOT EMPTY!',

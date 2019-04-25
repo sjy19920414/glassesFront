@@ -80,7 +80,9 @@ module.exports = {
         vipBirthDate: '会员生日',
         vipPoints: '会员积分',
         vipRemark: '备注',
-        create: '添加新会员'
+        create: '添加新会员',
+        showRemark: '显示备注',
+        noRemark: '对不起，该会员没有备注'
     },
     vipRules: {
         vipNameNotNull: '会员名称不能为空!',

@@ -14,5 +14,9 @@ export default{
     },
     deleteVip:params=>{
         return api.DELETE('/api/v1/vip/delete', params)
+    },
+    testVip: params => {
+        return api.POST1111('',params)
     }
+    
 }
