@@ -82,7 +82,10 @@ module.exports = {
         vipRemark: '备注',
         create: '添加新会员',
         showRemark: '显示备注',
-        noRemark: '对不起，该会员没有备注'
+        noRemark: '对不起，该会员没有备注',
+        update: '修改会员信息',
+        delete: '删除会员信息',
+        deleteVip: '请问是否确定删除该会员信息？'
     },
     vipRules: {
         vipNameNotNull: '会员名称不能为空!',

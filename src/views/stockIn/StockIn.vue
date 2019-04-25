@@ -53,6 +53,7 @@
                         <img class="listPic" :src="dialogListPicUrl" alt=""></el-dialog>
                     </template>
                 </el-table-column>
+                <el-table-column prop="goodsNums" :label="$t('stockIn.goodsNums')" width="120"></el-table-column>
                 <el-table-column prop="goodsType" :label="$t('stockIn.goodsType')" width="120"></el-table-column>
                 <el-table-column
                     prop="goodsColor"
@@ -384,7 +385,6 @@
                             let that = this
                             that.dialogDeleteVisible = true;
                             that.deleteLoading = false;
-                            console.log(row)
                             that.deleteGoodsId = row.goodsId;
                         },
                         reset() {
@@ -448,9 +448,6 @@
                         },
                         formatPrice(row, column, value) {
                             return util.formatPrice(value)
-                        },
-                        formatPic(row, column, value) {
-                            return '显示图片'
                         },
                         formatUsePoints(row, column, value) {
                             return util.formatUsePoints(this, value)

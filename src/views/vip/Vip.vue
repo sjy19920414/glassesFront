@@ -4,10 +4,16 @@
         <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
             <el-form :inline="true" :model="filters">
                 <el-form-item class=".filters-items-25">
-                    <el-input type="text" v-model="filters.vipName" :placeholder="$t('vip.vipName')"></el-input>
+                    <el-input
+                        type="text"
+                        v-model="filters.vipName"
+                        :placeholder="$t('vip.vipName')"></el-input>
                 </el-form-item>
                 <el-form-item class=".filters-items-25">
-                    <el-input type="text" v-model="filters.vipPhone" :placeholder="$t('vip.vipPhone')"></el-input>
+                    <el-input
+                        type="text"
+                        v-model="filters.vipPhone"
+                        :placeholder="$t('vip.vipPhone')"></el-input>
                 </el-form-item>
                 <el-form-item class="filters-button">
                     <el-button type="primary" v-on:click="handleSearch">{{$t('common.search')}}</el-button>
@@ -19,26 +25,47 @@
         </el-col>
 
         <!--列表-->
-        <el-table :data="vip" highlight-current-row="highlight-current-row" v-loading="listLoading"
-            @selection-change="selsChange" style="width: 100%;">
+        <el-table
+            :data="vip"
+            highlight-current-row="highlight-current-row"
+            v-loading="listLoading"
+            @selection-change="selsChange"
+            style="width: 100%;">
             <el-table-column prop="vipName" :label="$t('vip.vipName')" width="200"></el-table-column>
             <el-table-column prop="vipPhone" :label="$t('vip.vipPhone')" width="160"></el-table-column>
-            <el-table-column prop="vipBirthTime" :label="$t('vip.vipBirthDate')" :formatter="formatDate" width="160">
-            </el-table-column>
+            <el-table-column
+                prop="vipBirthTime"
+                :label="$t('vip.vipBirthDate')"
+                :formatter="formatDate"
+                width="160"></el-table-column>
             <el-table-column prop="vipPoints" :label="$t('vip.vipPoints')" width="160"></el-table-column>
             <el-table-column prop="vipRemark" :label="$t('vip.vipRemark')" width="200">
                 <template slot-scope="scope">
-                    <el-popover placement="bottom" width="120" trigger="click"
+                    <el-popover
+                        placement="bottom"
+                        width="120"
+                        trigger="click"
+                        height="20"
                         :content="scope.row.vipRemark ? scope.row.vipRemark : $t('vip.noRemark')">
-                        <el-button slot="reference">{{$t('vip.showRemark')}}</el-button>
+                        <el-button style="font: 12px/1.5 Tahoma,Helvetica,Arial,'宋体',sans-serif; padding:5px 20px;" slot="reference">{{$t('vip.showRemark')}}</el-button>
                     </el-popover>
                 </template>
             </el-table-column>
-            <el-table-column :label="$t('common.operation')" >
+            <el-table-column :label="$t('common.operation')" width="240">
                 <template slot-scope="scope">
-                    <el-button type="primary" size="mini" icon="fa fa-edit" width="100" @click="setCurrent(scope.row)">
+                    <el-button
+                        type="primary"
+                        size="mini"
+                        icon="fa fa-edit"
+                        width="100"
+                        @click="setCurrent(scope.row)">
                         {{$t('common.edit')}}</el-button>
-                    <el-button type="danger" size="mini" width="100" icon="fa fa-trash-o" @click="preDelete(scope.row)">
+                    <el-button
+                        type="danger"
+                        size="mini"
+                        width="100"
+                        icon="fa fa-trash-o"
+                        @click="preDelete(scope.row)">
                         {{$t('common.delete')}}</el-button>
                 </template>
             </el-table-column>
@@ -46,14 +73,28 @@
 
         <!--工具条-->
         <el-col :span="24" class="toolbar">
-            <el-pagination layout="total, prev, pager, next" @current-change="handleCurrentChange"
-                :page-size="this.limit" :total="total" style="float:right;" :current-page="this.page"></el-pagination>
+            <el-pagination
+                layout="total, prev, pager, next"
+                @current-change="handleCurrentChange"
+                :page-size="this.limit"
+                :total="total"
+                style="float:right;"
+                :current-page="this.page"></el-pagination>
         </el-col>
 
         <!-- Dialog提示-->
-        <el-dialog :title="$t('vip.create')" :visible="dialogCreateVisible" :close-on-click-modal="false"
-            :close-on-press-escape="false" :show-close="false">
-            <el-form id="#create" :model="create" :rules="createRules" ref="create" label-width="100px">
+        <el-dialog
+            :title="$t('vip.create')"
+            :visible="dialogCreateVisible"
+            :close-on-click-modal="false"
+            :close-on-press-escape="false"
+            :show-close="false">
+            <el-form
+                id="#create"
+                :model="create"
+                :rules="createRules"
+                ref="create"
+                label-width="100px">
                 <el-form-item :label="$t('vip.vipName')" prop="vipName">
                     <el-input v-model="create.vipName" type="text"></el-input>
                 </el-form-item>
@@ -70,67 +111,51 @@
             <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogCreateVisible =
         false">{{$t('common.cancel')}}</el-button>
-                <el-button type="primary" :loading="createLoading" @click="createGoods">{{$t('common.confirm')}}
+                <el-button type="primary" :loading="createLoading" @click="createVip">{{$t('common.confirm')}}
                 </el-button>
             </div>
         </el-dialog>
 
-        <el-dialog :title="$t('stockIn.update')" :visible.sync="dialogUpdateVisible" :close-on-click-modal="false"
+        <el-dialog
+            :title="$t('vip.update')"
+            :visible.sync="dialogUpdateVisible"
+            :close-on-click-modal="false"
             :close-on-press-escape="false">
-            <el-form id="#update" :model="update" :rules="createRules" ref="update" label-width="100px">
-                <el-form-item :label="$t('stockIn.goodsName')" prop="goodsName">
-                    <el-input v-model="update.goodsName" type="text"></el-input>
+            <el-form
+                id="#update"
+                :model="update"
+                :rules="createRules"
+                ref="update"
+                label-width="100px">
+                   <el-form-item :label="$t('vip.vipName')" prop="vipName">
+                    <el-input v-model="update.vipName" type="text"></el-input>
                 </el-form-item>
-                <el-form-item :label="$t('stockIn.goodsType')" prop="goodsType">
-                    <el-input v-model="update.goodsType" type="text"></el-input>
+                <el-form-item :label="$t('vip.vipPhone')" prop="vipPhone">
+                    <el-input v-model="update.vipPhone" type="text"></el-input>
                 </el-form-item>
-                <el-form-item :label="$t('stockIn.goodsColor')" prop="goodsColor">
-                    <el-input v-model="update.goodsColor" type="text"></el-input>
+                <el-form-item :label="$t('vip.vipBirthDate')">
+                    <el-date-picker v-model="update.vipBirthTime" type="date" align="center"></el-date-picker>
                 </el-form-item>
-                <el-form-item :label="$t('stockIn.goodsInPrice')" prop="goodsInPrice">
-                    <el-input v-model="update.goodsInPrice" type="text">
-                        <template slot="append">¥</template>
-                    </el-input>
-                </el-form-item>
-                <el-form-item :label="$t('stockIn.goodsPrice')" prop="goodsPrice">
-                    <el-input v-model="update.goodsPrice" type="text">
-                        <template slot="append">¥</template>
-                    </el-input>
-                </el-form-item>
-                <el-form-item :label="$t('stockIn.goodsFrom')" prop="goodsFrom">
-                    <el-input v-model="update.goodsFrom" type="text"></el-input>
-                </el-form-item>
-                <el-form-item :label="$t('stockIn.goodsNums')" prop="goodsNums">
-                    <el-input-number v-model="update.goodsNums" :min="0" type="number"></el-input-number>
-                </el-form-item>
-                <el-form-item :label="$t('stockIn.usePoints')" prop="goodsUsePoints">
-                    <el-radio v-model="update.goodsUsePoints" :label="0">{{$t('common.yes')}}</el-radio>
-                    <el-radio v-model="update.goodsUsePoints" :label="1">{{$t('common.no')}}</el-radio>
-                </el-form-item>
-                <el-form-item :label="$t('common.preview')">
-                    <el-upload ref='updateWithPic' :on-preview="handlePictureCardPreview" :before-upload="updateWithPic"
-                        :on-change="changeFile" action="" :file-list="updateFiles" list-type="picture-card"
-                        :auto-upload="false" :limit="1">
-                        <i class="el-icon-plus"></i>
-                    </el-upload>
-
-                    <el-dialog :visible.sync="dialogVisible">
-                        <img class="listPic" :src="dialogImageUrl" alt=""></el-dialog>
+                <el-form-item :label="$t('vip.vipRemark')" prop="vipRemark">
+                    <el-input v-model="update.vipRemark" type="textarea"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogUpdateVisible = false">{{$t('common.cancel')}}</el-button>
-                <el-button type="primary" :loading="updateLoading" @click="updateGoods">{{$t('common.confirm')}}
+                <el-button type="primary" :loading="updateLoading" @click="updateVip">{{$t('common.confirm')}}
                 </el-button>
             </div>
         </el-dialog>
 
-        <el-dialog :title="$t('stockIn.delete')" :visible.sync="dialogDeleteVisible" :close-on-click-modal="false"
+        <el-dialog
+            :title="$t('vip.delete')"
+            :visible.sync="dialogDeleteVisible"
+            :close-on-click-modal="false"
             :close-on-press-escape="false">
-            <span>{{$t('stockIn.deleteGoods')}}</span>
+            <span>{{$t('vip.deleteVip')}}</span>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="dialogDeleteVisible = false">{{$t('common.cancel')}}</el-button>
-                <el-button type="primary" @click="deleteGoods">{{$t('common.confirm')}}</el-button>
+                <el-button type="primary" @click="deleteVip">{{$t('common.confirm')}}</el-button>
             </span>
         </el-dialog>
 
@@ -165,20 +190,24 @@
                 },
                 deleteVipId: '',
                 createRules: {
-                    vipName: [{
-                        required: true,
-                        message: this.$t('vipRules.vipNameNotNull'),
-                        trigger: 'blur'
-                    }],
-                    vipPhone: [{
-                        required: true,
-                        message: this.$t('vipRules.vipPhoneNotNull'),
-                        trigger: 'blur'
-                    }, {
-                        validator: this.isPhone,
-                        trigger: 'blur',
-                        message: this.$t('vipRules.vipPhoneNotRegex')
-                    }]
+                    vipName: [
+                        {
+                            required: true,
+                            message: this.$t('vipRules.vipNameNotNull'),
+                            trigger: 'blur'
+                        }
+                    ],
+                    vipPhone: [
+                        {
+                            required: true,
+                            message: this.$t('vipRules.vipPhoneNotNull'),
+                            trigger: 'blur'
+                        }, {
+                            validator: this.isPhone,
+                            trigger: 'blur',
+                            message: this.$t('vipRules.vipPhoneNotRegex')
+                        }
+                    ]
                 },
                 user: JSON.parse(sessionStorage.getItem('user')),
                 vip: [],
@@ -190,13 +219,9 @@
                 dialogCreateVisible: false,
                 dialogUpdateVisible: false,
                 dialogVisible: false,
-                dialogListPicVisible: false,
-                dialogListPicUrl: '',
                 deleteLoading: false,
                 dialogDeleteVisible: false,
-                dialogImageUrl: '',
                 limit: 5,
-                updateFiles: [],
                 sels: [] //列表选中列
             }
         },
@@ -216,31 +241,21 @@
             setCurrent(row) {
                 let that = this
                 that.update = row;
-                that.update.goodsPrice = util.formatPrice(row.goodsPrice)
-                that.update.goodsInPrice = util.formatPrice(row.goodsInPrice)
                 that.dialogUpdateVisible = true;
                 that.updateLoading = false;
-                that.updateFiles = []
-                if (row.goodsPic) {
-                    that.updateFiles = [{
-                        name: "",
-                        url: "data:image/jpeg;base64," + row.goodsPic
-                    }]
-                }
             },
             formatDate(row, column, value) {
-                return value == "" ?
-                    "-" :
-                    util
-                    .formatDate
-                    .format(new Date(value), 'yyyy-MM-dd')
+                return value == ""
+                    ? "-"
+                    : util
+                        .formatDate
+                        .format(new Date(value), 'yyyy-MM-dd')
             },
             preDelete(row) {
                 let that = this
                 that.dialogDeleteVisible = true;
                 that.deleteLoading = false;
-                console.log(row)
-                that.deleteGoodsId = row.goodsId;
+                that.deleteVipId = row.vipId;
             },
             reset() {
                 this
@@ -273,98 +288,22 @@
                         that.listLoading = false;
                         that
                             .$message
-                            .error({
-                                showClose: true,
-                                message: err.response.data,
-                                duration: 2000
-                            });
+                            .error({showClose: true, message: err.response.data, duration: 2000});
                     });
             },
-            createGoods() {
+            createVip() {
                 let that = this;
-                if ('' == that.dialogImageUrl) {
-                    that.createWithPic(null);
-                } else {
-                    that
-                        .$refs
-                        .createWithPic
-                        .submit();
+                if (that.create.vipBirthTime) {
+                    that.create.vipBirthTime = util.formatDate.format(new Date(that.create.vipBirthTime), 'yyyy-MM-dd')
                 }
-            },
-            updateGoods() {
-                let that = this;
-                if ('' == that.dialogImageUrl) {
-                    that.updateWithPic(null);
-                } else {
-                    that
-                        .$refs
-                        .updateWithPic
-                        .submit();
-                }
-            },
-            formatPrice(row, column, value) {
-                return util.formatPrice(value)
-            },
-            formatPic(row, column, value) {
-                return '显示图片'
-            },
-            formatUsePoints(row, column, value) {
-                return util.formatUsePoints(this, value)
-            },
-            isPhone(rule, value, callback) {
-                var regPhone = /^1[\d]{10}$/;
-                if (!regPhone.test(value)) {
-                    return callback(new Error());
-                }
-                return callback();
-            },
-            handlePictureCardPreview(file) {
-                this.dialogVisible = true;
-            },
-            changeFile(file) {
-                this.dialogImageUrl = file.url;
-            },
-            createWithPic(file) {
-                let that = this
-                const formData = new FormData()
-                if (null != file) {
-
-                    const isJPG = file.type === 'image/jpeg';
-                    const isLt2M = file.size / 1024 / 1024 < 2;
-
-                    if (!isJPG) {
-                        that
-                            .$message
-                            .error(that.$t('error.picJPGOnly'));
-                        return false;
-                    }
-                    if (!isLt2M) {
-                        that
-                            .$message
-                            .error(that.$t('error.picLessThanTwo'));
-                        return false;
-                    }
-                    formData.append('file', file)
-                }
-
-                Object
-                    .keys(that.create)
-                    .forEach(key => {
-                        let value = that.create[key]
-                        if ('goodsPrice' == key || 'goodsInPrice' == key) {
-                            value = that.create[key] * 100
-                        }
-                        formData.append(key, value)
-                    })
-
                 that
                     .$refs
                     .create
                     .validate((valid) => {
                         if (valid) {
                             that.createLoading = true;
-                            stockIn
-                                .createGoods(formData)
+                            vip
+                                .createVip(that.create)
                                 .then(res => {
                                     that
                                         .$message
@@ -385,55 +324,19 @@
                         }
                     });
             },
-            previewPic(row) {
-                this.dialogListPicVisible = true;
-                if (row.goodsPic) {
-                    this.dialogListPicUrl = "data:image/jpeg;base64," + row.goodsPic;
-                } else {
-                    this.dialogListPicUrl = commConst.notFoundPic
+            updateVip() {
+                let that = this;
+                if (that.update.vipBirthTime) {
+                    that.update.vipBirthTime = util.formatDate.format(new Date(that.update.vipBirthTime), 'yyyy-MM-dd')
                 }
-            },
-            updateWithPic(file) {
-                let that = this
-                const formData = new FormData()
-                if (null != file) {
-
-                    const isJPG = file.type === 'image/jpeg';
-                    const isLt2M = file.size / 1024 / 1024 < 2;
-
-                    if (!isJPG) {
-                        that
-                            .$message
-                            .error(that.$t('error.picJPGOnly'));
-                        return false;
-                    }
-                    if (!isLt2M) {
-                        that
-                            .$message
-                            .error(that.$t('error.picLessThanTwo'));
-                        return false;
-                    }
-                    formData.append('file', file)
-                }
-
-                Object
-                    .keys(that.update)
-                    .forEach(key => {
-                        let value = that.update[key]
-                        if ('goodsPrice' == key || 'goodsInPrice' == key) {
-                            value = that.update[key] * 100
-                        }
-                        formData.append(key, value)
-                    })
-
                 that
                     .$refs
                     .update
                     .validate((valid) => {
                         if (valid) {
                             that.updateLoading = true;
-                            stockIn
-                                .updateGoods(formData)
+                            vip
+                                .updateVip(that.update)
                                 .then(res => {
                                     that
                                         .$message
@@ -453,21 +356,31 @@
                         }
                     });
             },
-            deleteGoods() {
+            formatUsePoints(row, column, value) {
+                return util.formatUsePoints(this, value)
+            },
+            isPhone(rule, value, callback) {
+                var regPhone = /^1[\d]{10}$/;
+                if (!regPhone.test(value)) {
+                    return callback(new Error());
+                }
+                return callback();
+            },
+            deleteVip() {
                 let that = this
                 that.deleteLoading = true;
                 let param = {
-                    'goodsId': that.deleteGoodsId
+                    'vipId': that.deleteVipId
                 }
-                stockIn
-                    .deleteGoods(param)
+                vip
+                    .deleteVip(param)
                     .then(res => {
                         that
                             .$message
                             .success(that.$t('common.deleteSuccess'));
                         that.dialogDeleteVisible = false;
                         that.deleteLoading = false;
-                        that.deleteGoodsId = '';
+                        that.deleteVipId = '';
                         that.handleSearch();
                     })
                     .catch((res) => {
@@ -475,32 +388,12 @@
                             .$message
                             .error(res.response.data);
                         that.deleteLoading = false;
-                        that.deleteGoodsId = '';
+                        that.deleteVipId = '';
                     });
             }
         },
         mounted() {
-            // this.getVip();
-            
-            vip
-                    .testVip({})
-                    .then(function (result) {
-                        console.log(result)
-                        that.listLoading = false;
-                        if (result) {
-                            that.total = result.total;
-                            that.vip = result.list;
-                        }
-                    }, function (err) {
-                        that.listLoading = false;
-                        that
-                            .$message
-                            .error({
-                                showClose: true,
-                                message: err.response.data,
-                                duration: 2000
-                            });
-                    });
+            this.getVip();
         }
     }
 </script>

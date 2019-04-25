@@ -28,8 +28,3 @@ export const PATCH = (url, params) => {
 export const POSTHEADER = (url, params, header) => {
   return axios.post(`${base}${url}`, params, header).then(res => res.data)
 }
-
-export const POST1111 = (url, params) => {
-  return axios.post('http://10.199.178.48:8080/test/invoices' , params).then(res => res.data)
-}
-

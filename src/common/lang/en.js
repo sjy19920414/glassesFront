@@ -14,17 +14,17 @@ module.exports = {
         error: {
             positiveInteger: 'Please input positive integer.'
         },
-        status: 'Status',
-        apply: 'Apply',
-        operation: 'Operation',
+        status: 'STATUS',
+        apply: 'APPLY',
+        operation: 'OPERATION',
         request: {
             error: 'Send request to backend error.'
         },
         detail: 'VIEW DETAIL',
-        save: 'Save',
-        pass: 'Pass',
-        refuse: 'Refuse',
-        user: 'User',
+        save: 'SAVE',
+        pass: 'PASS',
+        refuse: 'REFUSE',
+        user: 'USER',
         create: 'CREATE',
         confirm: "CONFIRM",
         cancel: "CANCEL",
@@ -36,6 +36,7 @@ module.exports = {
         no: 'NO',
         createSuccess: 'CREATE SUCCESS',
         updateSuccess: 'UPDATE SUCCESS',
+        deleteSuccess: 'DELETE SUCCESS',
         back: 'BACK',
         switchlan:'EN/中',
         preview: 'PREVIEW',
@@ -80,8 +81,12 @@ module.exports = {
         vipBirthDate: 'VIP BIRTHDAY',
         vipPoints: 'POINTS',
         vipRemark: 'REMARK',
+        create: 'ADD VIP',
         showRemark: 'SHOW REMARK',
-        noRemark: 'Sorry, this vip\'s remark is empty'
+        noRemark: 'Sorry, this vip\'s remark is empty',
+        update: 'UPDATE VIP',
+        delete: 'DELETE VIP',
+        deleteVip: 'Are you sure that you want to delete this vip?'
     },
     vipRules: {
         vipNameNotNull: 'VIP NAME CAN NOT EMPTY!',
