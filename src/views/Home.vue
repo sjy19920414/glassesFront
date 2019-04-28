@@ -14,11 +14,9 @@
 					<span class="el-dropdown-link userinfo-inner"><img :src="this.sysUserAvatar" />
 						{{sysUserName}}</span>
 					<el-dropdown-menu slot="dropdown">
-						<el-dropdown-item>我的消息</el-dropdown-item>
-						<el-dropdown-item>设置</el-dropdown-item>
-						<el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>
+						<el-dropdown-item divided @click.native="switchLan()">{{$t('common.switchlan')}}</el-dropdown-item>
+						<el-dropdown-item divided @click.native="logout">{{$t('common.logout')}}</el-dropdown-item>
 					</el-dropdown-menu>
-					<span style="cursor: pointer" @click="switchLan()">{{$t('common.switchlan')}}</span>
 				</el-dropdown>
 			</el-col>
 		</el-col>
@@ -64,6 +62,7 @@
 </template>
 
 <script>
+	import commConst from '../constants/commConst';
 	export default {
 		data() {
 			return {
@@ -122,8 +121,8 @@
 			var user = sessionStorage.getItem('user');
 			if (user) {
 				user = JSON.parse(user);
-				this.sysUserName = user.name || '';
-				this.sysUserAvatar = user.avatar || '../static/logo.jpg';
+				this.sysUserName = user.userName || '';
+				this.sysUserAvatar = user.userImg ? "data:image/jpeg;base64," + user.userImg : commConst.normalUserImg;
 			}
 
 		}

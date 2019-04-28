@@ -61,6 +61,7 @@
                         @click="setCurrent(scope.row)">
                         {{$t('common.edit')}}</el-button>
                     <el-button
+                        v-if="user && 1== user.userType"
                         type="danger"
                         size="mini"
                         width="100"

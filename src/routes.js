@@ -3,6 +3,7 @@ import NotFound from './views/404.vue'
 import Home from './views/Home.vue'
 import StockIn from './views/stockIn/StockIn.vue'
 import Vip from './views/vip/Vip.vue'
+import Order from './views/order/Order.vue'
 
 let routes = [{
         path: '/login',
@@ -36,6 +37,17 @@ let routes = [{
             path: '/vip',
             component: Vip,
             name: 'menu.vipManagement'
+        }]
+    },
+    {
+        path: '/',
+        component: Home,
+        iconCls: 'fa fa-cart-arrow-down',
+        leaf: true,
+        children: [{
+            path: '/order',
+            component: Order,
+            name: 'menu.orderManagement'
         }]
     },
     {

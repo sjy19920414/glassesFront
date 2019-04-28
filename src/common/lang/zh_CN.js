@@ -2,7 +2,8 @@ module.exports = {
     menu: {
         goodsManagement: '商品管理',
         glassesManagement: '方明视光管理平台',
-        vipManagement: '会员管理'
+        vipManagement: '会员管理',
+        orderManagement: '订单管理'
     },
     common: {
         loading: '加载中。。。',
@@ -36,10 +37,14 @@ module.exports = {
         no: '否',
         createSuccess: '创建成功',
         updateSuccess: '修改成功',
+        deleteSuccess: '删除成功',
         back: '返回',
         switchlan:'中/EN',
         preview: '预览',
-        delete: '删除'
+        delete: '删除',
+        logout: '退出',
+        refund: '退单',
+        add: '添加'
     },
     date: {
         latestWeek: '最近一周',
@@ -57,12 +62,12 @@ module.exports = {
         goodsName: '商品名称',
         goodsType: '商品型号',
         goodsColor: '商品色号',
-        goodsPrice: '销售价格',
+        goodsPrice: '销售价格（元）',
         goodsNums: '商品库存',
-        goodsInPrice: '商品进货价',
+        goodsInPrice: '商品进货价（元）',
         goodsFrom: '进货渠道',
         create: '增加商品',
-        usePoints: '使用积分',
+        usePoints: '参与积分',
         update: '修改商品',
         delete: '删除商品',
         deleteGoods: '即将删除该商品，是否确定？'
@@ -95,5 +100,24 @@ module.exports = {
     error: {
         picJPGOnly:'上传头像图片只能是 JPG 格式!',
         picLessThanTwo:'上传头像图片大小不能超过 2MB!'
+    },
+    order: {
+        orderId: '订单号',
+        vipName: '会员名',
+        createDate: '销售时间',
+        payMoney: '原价（元）',
+        payOff: '折扣',
+        usePoints: '使用积分',
+        getPoints: '获得积分',
+        payOffMoney: '折扣价（元）',
+        realPayMoney: '实付款（元）',
+        userName: '售货人',
+        create: '新建订单',
+        detail: '订单详情',
+        goodsNum: '数量',
+        refundOrder: '即将撤销订单，是否确认？',
+        goodsDetail: '商品详情',
+        showDetail: '查看商品'
+
     }
 };

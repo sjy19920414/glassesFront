@@ -2,7 +2,8 @@ module.exports = {
     menu: {
         goodsManagement: 'GOODS MANAGEMENT',
         glassesManagement: 'GLASSES MANAGEMENT SYSTEM',
-        vipManagement: 'VIP MANAGEMENT'
+        vipManagement: 'VIP MANAGEMENT',
+        orderManagement: 'ORDER MANAGEMENT'
     },
     common: {
         loading: 'Loading...',
@@ -40,7 +41,10 @@ module.exports = {
         back: 'BACK',
         switchlan:'EN/中',
         preview: 'PREVIEW',
-        delete: 'DELETE'
+        delete: 'DELETE',
+        logout: 'Logout',
+        refund: 'Refund',
+        add: 'ADD'
     },
     date: {
         latestWeek: 'LATEST WEEK',
@@ -96,5 +100,23 @@ module.exports = {
     error: {
         picJPGOnly:'PICTURE CAN ONLY BE JPG!',
         picLessThanTwo:'PICTURE CAN NOT LARGE THAN 2MB!'
+    },
+    order: {
+        orderId: 'ORDER ID',
+        vipName: 'VIP NAME',
+        createDate: 'SALE TIME',
+        payMoney: 'Orig(￥)',
+        payOff: 'OFF',
+        usePoints: 'USED POINTS',
+        getPoints: 'GOT POINTS',
+        payOffMoney: 'OFF PRICE(￥)',
+        realPayMoney: 'FIANL PRICE(￥)',
+        userName: 'SALER',
+        create: 'CREATE ORDER',
+        detail: 'ORDER DETAIL',
+        goodsNum: 'NUMBERS',
+        refundOrder: 'Are you sure that you want to refund this order?',
+        goodsDetail: 'GOODS',
+        showDetail: 'SHOW GOODS'
     }
 };
