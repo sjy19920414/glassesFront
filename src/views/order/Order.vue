@@ -181,7 +181,7 @@
                     <el-table-column prop="goodsName" :label="$t('stockIn.goodsName')" width="180"></el-table-column>
                     <el-table-column :label="$t('order.goodsNum')" width ="200">
                         <template slot-scope="scope" >
-                            <el-input-number :max="scope.row.goodsNums" :min="1" @change="changeNum(scope, this.value)"></el-input-number>
+                            <el-input-number :max="scope.row.goodsNums" :min="1" @change="changeNum(scope)"></el-input-number>
                         </template>
                     </el-table-column>
                     <el-table-column
