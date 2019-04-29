@@ -43,6 +43,12 @@ body{
 .toolbar{
     margin: 5px 0px;
 }
+.toolbar .el-input__inner{
+    font: 12px/1.5 Tahoma,Helvetica,Arial,'宋体',sans-serif;
+}
+.toolbar .el-button{
+    font: 12px/1.5 Tahoma,Helvetica,Arial,'宋体',sans-serif;
+}
 .label-loginName{
     font-weight: bold;
     color: #FFFFFF;

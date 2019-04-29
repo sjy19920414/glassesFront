@@ -117,6 +117,7 @@ module.exports = {
         goodsNum: 'NUMBERS',
         refundOrder: 'Are you sure that you want to refund this order?',
         goodsDetail: 'GOODS',
-        showDetail: 'SHOW GOODS'
+        showDetail: 'SHOW GOODS',
+        signal: '￥'
     }
 };
