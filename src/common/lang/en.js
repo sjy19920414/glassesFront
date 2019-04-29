@@ -118,6 +118,10 @@ module.exports = {
         refundOrder: 'Are you sure that you want to refund this order?',
         goodsDetail: 'GOODS',
         showDetail: 'SHOW GOODS',
-        signal: '￥'
+        signal: '￥',
+        mostPoints: 'USEABLE COUNT'
+    },
+    orderRules: {
+        payOffCannotNull: 'PAY OFF CAN NOT EMPTY!'
     }
 };

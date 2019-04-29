@@ -118,6 +118,10 @@
             refundOrder: '即将撤销订单，是否确认？',
             goodsDetail: '商品详情',
             showDetail: '查看商品',
-            signal: '元'
+            signal: '元',
+            mostPoints: '最多可用积分'
+        },
+        orderRules: {
+            payOffCannotNull: '折扣不能为空!'
         }
     };
