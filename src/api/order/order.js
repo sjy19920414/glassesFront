@@ -13,7 +13,7 @@ export default{
         return api.POST('/api/v1/order/create', params)
     },
     refundOrder:params=>{
-        return api.PUT('/api/v1/order/refund', params)
+        return api.DELETE('/api/v1/order/refund', params)
     }
     
 }

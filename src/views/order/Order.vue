@@ -28,6 +28,19 @@
                         v-model="filters.orderId"
                         :placeholder="$t('order.orderId')"></el-input>
                 </el-form-item>
+                <el-form-item class=".filters-items-25">
+                    <el-select
+                        v-model="filters.orderStatus"
+                        clearable="clearable"
+                        filterable="filterable"
+                        :placeholder="$t('order.orderStatus')">
+                        <el-option
+                            v-for="item in orderStatus"
+                            :key="item.value"
+                            :label="$t(item.name)"
+                            :value="item.value"></el-option>
+                    </el-select>
+                </el-form-item>
                 <el-form-item class="filters-button">
                     <el-button type="primary" v-on:click="handleSearch">{{$t('common.search')}}</el-button>
                 </el-form-item>
@@ -44,7 +57,7 @@
             v-loading="listLoading"
             @selection-change="selsChange"
             style="width: 100%;">
-            <el-table-column prop="orderId" :label="$t('order.orderId')" width="200"></el-table-column>
+            <el-table-column prop="orderId" :label="$t('order.orderId')" width="250"></el-table-column>
             <el-table-column :label="$t('order.detail')" width="200">
                 <template slot-scope="scope">
                     <el-popover placement="bottom" width="600" trigger="click" height="20">
@@ -82,6 +95,7 @@
                     </el-popover>
                 </template>
             </el-table-column>
+            <el-table-column prop="orderStatus" :formatter="formatStatus" :label="$t('order.orderStatus')" width="160"></el-table-column>
             <el-table-column prop="vipName" :label="$t('order.vipName')" width="160"></el-table-column>
             <el-table-column prop="userName" :label="$t('order.userName')" width="160"></el-table-column>
             <el-table-column
@@ -121,6 +135,7 @@
                         size="mini"
                         width="100"
                         icon="fa fa-trash-o"
+                        v-if="0 === scope.row.orderStatus"
                         @click="preDelete(scope.row)">
                         {{$t('common.refund')}}</el-button>
                 </template>
@@ -313,7 +328,8 @@
                     saleUserId: '',
                     orderId: '',
                     startDate: '',
-                    endDate: ''
+                    endDate: '',
+                    orderStatus: ''
                 },
                 create: {
                     saleUserId: JSON.parse(sessionStorage.getItem('user')).userId,
@@ -349,7 +365,8 @@
                 preAddGoodsName: '',
                 preAddGoods: {},
                 preAddGoodsList: [],
-                summaryPoints: 0
+                summaryPoints: 0,
+                orderStatus: commConst.orderStatus
             }
         },
         methods: {
@@ -380,6 +397,9 @@
             },
             formatPrice(row, column, value) {
                 return util.formatPrice(value)
+            },
+            formatStatus(row, column, value) {
+                return util.formatStatus(this, value)
             },
             formatPriceNoRow(value) {
                 return util.formatPrice(value)
@@ -418,7 +438,8 @@
                     saleUserId: that.user && 1 == that.user.userType
                         ? that.filters.saleUserId
                         : that.user.userId,
-                    orderId: that.filters.orderId
+                    orderId: that.filters.orderId,
+                    orderStatus: that.filters.orderStatus
                 };
                 that.listLoading = true;
                 order
@@ -566,7 +587,7 @@
                     .then(res => {
                         that
                             .$message
-                            .success(that.$t('common.deleteSuccess'));
+                            .success(that.$t('common.refundSuccess'));
                         that.dialogDeleteVisible = false;
                         that.deleteLoading = false;
                         that.deleteOrderId = '';
@@ -698,7 +719,7 @@
                         .create
                         .goodsList
                         .forEach((goods) => {
-                            goods.goodsOffPrice = Math.round(goods.goodsPrice * that.create.payOff / 100);
+                            goods.goodsOffPrice = Math.round(goods.goodsNowPrice * that.create.payOff / 100);
                             goods.goodsPoints = 0 == goods.goodsUsePoints ? Math.floor(
                                 goods.goodsPrice * that.create.payOff / 10000) : 0
                         });

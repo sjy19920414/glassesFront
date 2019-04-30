@@ -166,7 +166,6 @@
 <script>
     //import NProgress from 'nprogress'
     import vip from '../../api/vip/vip';
-    import commConst from '../../constants/commConst';
     import util from '../../common/js/util';
 
     export default {

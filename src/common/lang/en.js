@@ -44,7 +44,8 @@ module.exports = {
         delete: 'DELETE',
         logout: 'Logout',
         refund: 'Refund',
-        add: 'ADD'
+        add: 'ADD',
+        refundSuccess: 'REFUND SUCCESS'
     },
     date: {
         latestWeek: 'LATEST WEEK',
@@ -119,7 +120,12 @@ module.exports = {
         goodsDetail: 'GOODS',
         showDetail: 'SHOW GOODS',
         signal: '￥',
-        mostPoints: 'USEABLE COUNT'
+        mostPoints: 'USEABLE COUNT',
+        orderStatus: 'ORDER STATUS',
+        status: {
+            yes: 'Normal',
+            no: 'refund'
+        }
     },
     orderRules: {
         payOffCannotNull: 'PAY OFF CAN NOT EMPTY!',

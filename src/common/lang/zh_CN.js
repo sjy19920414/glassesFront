@@ -44,7 +44,8 @@
             delete: '删除',
             logout: '退出',
             refund: '退单',
-            add: '添加'
+            add: '添加',
+            refundSuccess: '退单成功'
         },
         date: {
             latestWeek: '最近一周',
@@ -119,7 +120,12 @@
             goodsDetail: '商品详情',
             showDetail: '查看商品',
             signal: '元',
-            mostPoints: '最多可用积分'
+            mostPoints: '最多可用积分',
+            orderStatus: '订单状态',
+            status: {
+                yes: '正常',
+                no: '退单'
+            }
         },
         orderRules: {
             payOffCannotNull: '折扣不能为空!',

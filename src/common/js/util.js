@@ -58,31 +58,6 @@ export default {
         }
 
     },
-    formatState: function (context,val) {
-        for (let i = 0; i <commConst.status.length ; i++) {
-            if(commConst.status[i].value==val){
-                return context.$t(commConst.status[i].name);
-            }
-        }
-        return '';
-    },
-    formatTrueFalse: function (context,val) {
-        for (let i = 0; i <commConst.trueOrFalse.length ; i++) {
-            if(commConst.trueOrFalse[i].value==val){
-                return context.$t(commConst.trueOrFalse[i].name);
-            }
-        }
-        return '';
-    },
-    formatExeState: function (context,val) {
-
-        for (let i = 0; i <commConst.exeStatus.length ; i++) {
-            if(commConst.exeStatus[i].value==val){
-                return context.$t(commConst.exeStatus[i].name);
-            }
-        }
-        return '';
-    },
     formatPrice: function(value) {
         return parseFloat(value/100).toFixed(2)
     },
@@ -91,6 +66,14 @@ export default {
         for (let i = 0; i <commConst.usePointsOrNot.length ; i++) {
             if(commConst.usePointsOrNot[i].value==val){
                 return context.$t(commConst.usePointsOrNot[i].name);
+            }
+        }
+        return '';
+    },
+    formatStatus: function (context,val) {
+        for (let i = 0; i <commConst.orderStatus.length ; i++) {
+            if(commConst.orderStatus[i].value==val){
+                return context.$t(commConst.orderStatus[i].name);
             }
         }
         return '';
