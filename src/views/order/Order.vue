@@ -201,14 +201,14 @@
                     <el-input
                         class="w200"
                         :disabled="true"
-                        :placeholder="create.payMoney"
+                        :placeholder="formatPriceNoRow(create.payMoney)"
                         type="text"></el-input>
                 </el-form-item>
                 <el-form-item :label="$t('order.payOffMoney')">
                     <el-input
                         class="w200"
                         :disabled="true"
-                        :placeholder="create.payOffMoney"
+                        :placeholder="formatPriceNoRow(create.payOffMoney)"
                         type="text"></el-input>
                 </el-form-item>
                 <el-form-item :label="$t('order.mostPoints')">
@@ -216,6 +216,13 @@
                         class="w200"
                         :disabled="true"
                         :placeholder="summaryPoints"
+                        type="text"></el-input>
+                </el-form-item>
+                <el-form-item :label="$t('order.realPayMoney')">
+                    <el-input
+                        class="w200"
+                        :disabled="true"
+                        :placeholder="formatPriceNoRow(create.realPayMoney)"
                         type="text"></el-input>
                 </el-form-item>
                 <el-table
@@ -309,15 +316,15 @@
                     endDate: ''
                 },
                 create: {
-                    saleUserId: user.userId,
+                    saleUserId: JSON.parse(sessionStorage.getItem('user')).userId,
                     buyUserId: '',
-                    payMoney: '',
+                    payMoney: 0,
                     payOff: 100,
-                    payOffMoney: '',
-                    userPonits: '',
-                    usePoints: '',
-                    getPoints: '',
-                    realPayMoney: '',
+                    payOffMoney: 0,
+                    userPoints: 0,
+                    usePoints: 0,
+                    getPoints: 0,
+                    realPayMoney: 0,
                     goodsList: []
                 },
                 deleteOrderId: '',
@@ -374,6 +381,9 @@
             formatPrice(row, column, value) {
                 return util.formatPrice(value)
             },
+            formatPriceNoRow(value) {
+                return util.formatPrice(value)
+            },
             preDelete(row) {
                 let that = this
                 that.dialogDeleteVisible = true;
@@ -390,6 +400,7 @@
                 that.create.goodsList = [];
                 that.dialogCreateVisible = false;
                 that.preAddGoodsList = [];
+                that.create.realPayMoney = 0;
                 that.summaryPoints = 0;
             },
             preCreate() {
@@ -505,6 +516,14 @@
                     this.$message(
                         {showClose: true, message: this.$t('orderRules.payOffCannotNull'), type: 'error'}
                     );
+                    that.createLoading = false;
+                    return false;
+                }
+                if (!that.create.goodsList || 0 === that.create.goodsList.length) {
+                    this.$message(
+                        {showClose: true, message: this.$t('orderRules.goodsListCannotNull'), type: 'error'}
+                    );
+                    that.createLoading = false;
                     return false;
                 }
                 order
@@ -608,6 +627,7 @@
                             goodsNum: 1,
                             goodsPoints: 0 == that.preAddGoods.goodsUsePoints ? Math.floor(
                                 that.preAddGoods.goodsPrice * that.create.payOff / 10000) : 0
+                            
                         });
                     that
                         .create
@@ -623,30 +643,43 @@
                 }
             },
             getSummaries(param) {
+                let that = this;
                 const {columns, data} = param;
                 const sums = [];
                 columns.forEach((column, index) => {
                         const values = data.map(item => Number(item[column.property]));
                         if (!values.every(value => isNaN(value))) {
-                            sums[index] = util.formatPrice(values.reduce((prev, curr) => {
+                            sums[index] = values.reduce((prev, curr) => {
                                 const value = Number(curr);
                                 if (!isNaN(value)) {
                                     return prev + curr;
                                 } else {
                                     return prev;
                                 }
-                            }, 0));
+                            }, 0);
                             if (index === 2){
-                                this.create.payMoney = sums[index];
+                                that.create.payMoney = sums[index];
                             }
                             if (index === 3) {
-                                this.create.payOffMoney = sums[index];
+                                that.create.payOffMoney = sums[index];
+                                that.create.realPayMoney = that.create.payOffMoney - (that.create.userPoints > that.summaryPoints ? that.summaryPoints : that.create.userPoints) * 100;
                             }
                             if (index === 5) {
-                                this.summaryPoints = sums[index] * 100;
+                                that.summaryPoints = sums[index];
+                                that.create.usePoints = that.create.userPoints > that.summaryPoints ? that.summaryPoints : that.create.userPoints;
+                                that.create.getPoints = Math.floor(that.create.realPayMoney / 1000)
                             }
                         } else {
-                            sums[index] = 'N/A';
+                             if (index === 2){
+                                that.create.payMoney = 0;
+                            }
+                            if (index === 3) {
+                                that.create.payOffMoney = 0;
+                                that.create.realPayMoney = 0;
+                            }
+                            if (index === 5) {
+                                that.summaryPoints = 0;
+                            }
                         }
                 });
                 return '';
@@ -655,6 +688,8 @@
                 let that = this;
                 scope.row.goodsNowPrice = scope.row.goodsPrice * value;
                 scope.row.goodsOffPrice = Math.round(scope.row.goodsPrice * that.create.payOff / 100) * value;
+                scope.row.goodsPoints = (0 == scope.row.goodsUsePoints ? Math.floor(
+                                scope.row.goodsPrice * that.create.payOff / 10000) : 0) * value;
             },
             changePayOff(value) {
                 let that = this;
@@ -694,7 +729,7 @@
                             }
                         });
                 } else {
-                    that.create.userPoints = ''
+                    that.create.userPoints = 0
                 }
 
             }

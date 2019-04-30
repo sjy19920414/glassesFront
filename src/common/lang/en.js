@@ -122,6 +122,7 @@ module.exports = {
         mostPoints: 'USEABLE COUNT'
     },
     orderRules: {
-        payOffCannotNull: 'PAY OFF CAN NOT EMPTY!'
+        payOffCannotNull: 'PAY OFF CAN NOT EMPTY!',
+        goodsListCannotNull: 'Please choose at least on goods'
     }
 };

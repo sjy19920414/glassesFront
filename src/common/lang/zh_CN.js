@@ -122,6 +122,7 @@
             mostPoints: '最多可用积分'
         },
         orderRules: {
-            payOffCannotNull: '折扣不能为空!'
+            payOffCannotNull: '折扣不能为空!',
+            goodsListCannotNull: '至少选择一个商品'
         }
     };
